@@ -1,0 +1,2 @@
+# 专门查看 Git 状态的列表
+alias lg='eza -lh --git --icons'

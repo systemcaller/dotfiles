@@ -1,0 +1,41 @@
+- name: 检查 brew 是否已安装
+  ansible.builtin.stat:
+    path: /home/linuxbrew/.linuxbrew/bin/brew
+  register: brew_bin
+
+- name: 安装 Linuxbrew
+  ansible.builtin.shell: |
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: not brew_bin.stat.exists
+
+- name: 再次检查 brew 路径
+  ansible.builtin.command: which brew
+  register: brew_which
+  changed_when: false
+  ignore_errors: true
+
+
+
+- name: 使用 Shell 批量安装 Brew 工具
+  ansible.builtin.shell: |
+    # 强制加载 Homebrew 环境
+    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
+    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin${PATH+:$PATH}"
+    export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:"
+    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}"
+    
+    # 验证 brew 可用
+    which brew
+    brew --version
+    
+    # 安装包（幂等：已安装则跳过）
+    for pkg in {{ brew_packages | join(' ') }}; do
+      brew list "$pkg" 2>/dev/null || brew install "$pkg"
+    done
+  args:
+    executable: /bin/bash
+  when: install_brew_tools | bool
+  register: brew_install_result
+  changed_when: "'Installing' in brew_install_result.stdout"

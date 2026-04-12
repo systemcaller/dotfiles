@@ -1,0 +1,61 @@
+# 现代终端生产力工具清单
+install_brew_tools: true
+brew_packages:
+  # --- 核心生产力与文件管理 ---
+  - git          # 版本控制核心
+  - lazygit      # 终端最强 Git UI 交互工具
+  - yazi         # 极速终端文件管理器 (Rust 编写)
+  - eza          # ls 的现代替代品，带图标和 Git 状态
+  - fzf          # 命令行模糊搜索神器
+  - fd           # 快速且友好的 find 替代品
+  - rg           # ripgrep: 性能极佳的文本搜索工具 (替代 grep)
+  - bat          # 带语法高亮和 Git 修改提示的 cat 替代品
+  - trash-cli    # 命令行回收站，防止 rm -rf 误删
+  - zoxide       # [推荐补充] 极其聪明的 cd 替代品，支持自动跳转
+  - navi         # 自定义命令手册
+  - atuin        # 历史命令记录优化
+  - x-cmd        # 包管理工具，可试用
+
+  # --- 文本处理与配置调试 ---
+  - jq           # JSON 处理工具
+  - yq           # YAML 处理工具
+  - dyff         # 专门用于对比 YAML/JSON 文件差异的利器
+  - fanyi        # 终端中英翻译工具，支持 help 文档翻译
+  - lnav         # 高级日志文件查看与分析工具
+  - nvim         # Neovim: 现代可扩展的编辑器 (替代 vim)
+
+  # --- 系统监控与资源管理 ---
+  - btop         # 界面华丽的系统资源监控器 (替代 top/htop)
+  - procs        # 彩色进程查看工具 (替代 ps)
+  - duf          # 磁盘占用分析工具 (替代 df/du)
+  - gping        # [推荐补充] 带折线图的可视化 ping
+
+  # --- Kubernetes (K8s) 生态 ---
+  - kubectl      # K8s 命令行客户端
+  - helm         # K8s 包管理器
+  - k9s          # K8s 集群管理交互界面
+  - kind         # 在本地使用 Docker 容器运行 K8s
+  - dive         # Docker 镜像分层分析与优化工具
+  - ctop         # 容器资源实时监控工具
+
+  # --- 网络探测与安全 ---
+  - trippy       # 结合了 Traceroute 和 Ping 性能分析的工具
+  - nexttrace    # 可视化路由跟踪工具
+  - doggo        # 现代 DNS 查询工具 (替代 dig)
+  - nmap         # 经典主机探测与端口扫描工具
+  - tcping       # 基于 TCP 的 ping 工具
+  - asn          # 路由、IP 归属地与网络指纹查询
+  - nethogs      # [推荐补充] 按进程查看实时网速流量
+
+  # --- 实用辅助工具 ---
+  - tldr         # 简化版的命令使用手册 (替代 man)
+  - make         # 经典的任务脚本管理工具
+  - tmux         # 终端复用器，支持分屏与后台挂起
+  - curl         # 强大的网络传输工具
+  - aria2        # 多线程下载神器
+  - fnt          # 终端字体安装与管理工具
+  - tre          # 带 Git 忽略功能的目录树展示 (更友好的 tree)
+  - pathman      # 专门管理系统 PATH 环境变量的工具
+  - lychee       # 快速检查文档或博客中的死链接
+  # - gosop        # 现代化的数据签名与加密工具 (类似 gpg)
+  - ali          # 极简的终端接口压力测试工具

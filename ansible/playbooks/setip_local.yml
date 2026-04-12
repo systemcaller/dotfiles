@@ -1,0 +1,21 @@
+---
+- name: 部署我的终端环境
+  hosts: localhost
+  # become: false
+  vars:
+    dotfiles_repo: "https://gitlab.local/system/dotfiles.git"
+    dotfiles_dir: "{{ ansible_facts.env.HOME }}/.dotfiles"
+  roles:
+    - { role: common, tags: ['base', 'common'], become: true }
+    - { role: zsh, tags: ['shell', 'zsh'] , become: false}
+    - { role: dotfiles, tags: ['dotfiles'], become: false }
+    - { role: brew, tags: ['brew'] , become: false}
+  environment:
+    http_proxy: "http://127.0.0.1:7897"
+    https_proxy: "http://127.0.0.1:7897"
+    no_proxy: "localhost,127.0.0.1,gitlab.local"
+
+  tasks:
+    - name: 部署完成提示
+      debug:
+        msg: "✅ 环境部署完成！请退出重新登录以加载 Zsh。"

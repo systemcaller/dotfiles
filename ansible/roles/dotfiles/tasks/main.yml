@@ -1,0 +1,28 @@
+---
+
+# 1. 检查是否已有备份，防止重复执行时把已经生成的软链接给打包了
+- name: 检查是否已有初始备份
+  ansible.builtin.find:
+    paths: "{{ ansible_facts['user_dir'] }}"
+    patterns: "dotfiles_backup_*.tar.gz"
+  register: existing_backups
+
+# 2. 直接打包列表中的文件（使用内置日期 Fact）
+- name: 备份原始文件
+  community.general.archive:
+    # 直接将列表文件名补全为家目录绝对路径
+    path: "{{ dotfiles_to_link | map('regex_replace', '^(.*)$', ansible_facts['user_dir'] ~ '/\\1') | list }}"
+    dest: "{{ ansible_facts['user_dir'] }}/dotfiles_backup_{{ ansible_facts['date_time']['date'] }}.tar.gz"
+    format: gz
+    force_archive: yes
+  # 只有当 find 没找到任何备份包时才运行
+  when: existing_backups.matched == 0
+
+# 3. 强制创建软链接
+- name: 强制创建 Dotfiles 软链接
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/{{ item }}"
+    dest: "{{ ansible_facts['user_dir'] }}/{{ item }}"
+    state: link
+    force: yes
+  loop: "{{ dotfiles_to_link }}"
