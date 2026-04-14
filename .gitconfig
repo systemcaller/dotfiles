@@ -1,0 +1,8 @@
+[user]
+	email = systemcaller@wsl.com
+	name = systemcaller
+[credential]
+	helper = store
+[http "https://gitlab.local"]
+	sslCAInfo = /usr/local/share/ca-certificates/gitlab.crt
+	

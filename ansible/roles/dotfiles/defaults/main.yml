@@ -5,3 +5,29 @@ dotfiles_to_link:
   - .p10k.zsh
   # - .zshenv
   - .zprofile
+  - .gitconfig
+
+# 你的环境变量文件（例如：vars/main.yml 或 .env.yml）
+# dotfiles_dir: "{{ ansible_facts.user_dir }}/.dotfiles"  # 你的 dotfiles 根目录
+
+# 自定义软链接映射：src=dotfiles内的路径 | dest=系统实际要链接的路径(~下)
+dotfiles_symlinks:
+  # navi 自定义命令
+  - src: "navi/cheats/"
+    dest: ".local/share/navi/cheats/lyz"
+
+  # atuin 配置文件
+  - src: "config/atuin/config.toml"
+    dest: ".config/atuin/config.toml"
+
+  - src: ".zshrc"
+    dest: ".zshrc"
+
+  - src: ".zprofile"
+    dest: ".zprofile"
+
+  - src: ".gitconfig"
+    dest: ".gitconfig"
+
+  - src: ".p10k.zsh"
+    dest: ".p10k.zsh"

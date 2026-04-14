@@ -8,8 +8,8 @@
   roles:
     - { role: common, tags: ['base', 'common'], become: true }
     - { role: zsh, tags: ['shell', 'zsh'] , become: false}
-    - { role: dotfiles, tags: ['dotfiles'], become: false }
     - { role: brew, tags: ['brew'] , become: false}
+    - { role: dotfiles, tags: ['dotfiles'], become: false }
   environment:
     http_proxy: "http://127.0.0.1:7897"
     https_proxy: "http://127.0.0.1:7897"

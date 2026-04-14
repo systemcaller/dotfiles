@@ -24,6 +24,13 @@ alias ...='cd ../..'
 alias cat='bat '
 alias top='btop'
 
+# 专门查看 Git 状态的列表
+alias lg='eza -lh --git --icons'
+
+# make脚本管理
+alias mk='make'
+alias mkh='make help'
+
 # 命令帮助手册
 alias help='f() { curl -s "cheat.sh/$1" }; f'
 

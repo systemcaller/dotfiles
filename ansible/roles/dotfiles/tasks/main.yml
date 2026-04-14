@@ -18,11 +18,15 @@
   # 只有当 find 没找到任何备份包时才运行
   when: existing_backups.matched == 0
 
-# 3. 强制创建软链接
-- name: 强制创建 Dotfiles 软链接
+
+# 3. 批量创建自定义软链接（支持任意 src → dest 映射）
+- name: 批量创建 Dotfiles 软链接
   ansible.builtin.file:
-    src: "{{ dotfiles_dir }}/{{ item }}"
-    dest: "{{ ansible_facts['user_dir'] }}/{{ item }}"
+    src: "{{ ansible_facts['user_dir'] }}/.dotfiles/{{ item.src }}"   # 源：dotfiles 里的文件
+    path: "{{ ansible_facts['user_dir'] }}/{{ item.dest }}"  # 目标：系统路径
     state: link
-    force: yes
-  loop: "{{ dotfiles_to_link }}"
+    force: true                # 强制覆盖（已存在文件直接变软链接）
+    follow: false              # 不追踪旧链接
+  loop: "{{ dotfiles_symlinks }}"
+  loop_control:
+    label: "链接 {{ item.src }} → {{ item.dest }}"
