@@ -4,3 +4,35 @@
 
 # 分支重命名
 git branch -m <new-branch-name>
+
+# 提交
+git add . && git commit -m '<message>' && git push 
+# curl测试请求走代理
+curl -v -x http://192.168.0.103:7897 <url>
+
+# curl请求跟随跳转，比如重定向自动跟随
+curl -L <url>
+
+# pod资源消耗排序展示
+kubectl top pods -A | sort -rnk 4
+
+# 不看任何本地 DNS 服务器，我要从全球根服务器开始，自己一级一级查
+dig +trace <hostname> 
+
+# 查看本地真实的dns解析过程，注意配置了代理不会显示，代理和这个解析是两个不通的协议端口
+dig  <hostname> 
+
+# 查看当前环境dns解析结果，注意是当前网络环境
+nslookuo <hostname>
+
+# 查询文件。-H 包含隐藏目录和 -I 忽略 .gitignore 的限制
+fd -HI <filename> [path]
+
+# 查看当前GC状态
+jstat -gcutil <pid> 1000
+
+# 查询堆内存统计，显示当前内存中实例数量最多的前 20 类
+jmap -histo:live <pid> | head -n 20
+
+# 查看java程序进程号
+jps -l

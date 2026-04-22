@@ -20,9 +20,9 @@ _navi_append_save() {
     echo "✅ 已存入 $NAVI_CUSTOM_CHEAT: [$desc]"
 }
 
-# 1. sava: 手动存命令和说明
-# 用法: sava "ls -lh" 查看文件
-sava() {
+# 1. save: 手动存命令和说明
+# 用法: save "ls -lh" 查看文件
+save() {
     local cmd="$1"
     shift
     local description="$*" # 获取剩余所有参数作为说明

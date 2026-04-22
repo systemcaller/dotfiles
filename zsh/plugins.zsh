@@ -10,3 +10,8 @@ eval "$(atuin init zsh)"
 bindkey "^[[H" beginning-of-line
 # 绑定 End 键（顺便也配上，防止它也不生效）
 bindkey "^[[F" end-of-line
+
+# 取消 atuin 的向上按钮绑定，只能 ctrl+r 触发
+eval "$(atuin init zsh --disable-up-arrow)"
+
+# bindkey '^[[A' up-line-or-history

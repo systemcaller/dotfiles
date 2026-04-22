@@ -31,7 +31,7 @@ source $ZSH/oh-my-zsh.sh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-
+export PATH=/usr/bin:$PATH
 # ======================加载模块化 Zsh 配置 ======================
 # 加载别名、函数、插件（你自己的 dotfiles 结构）
 # 自动加载 ~/.dotfiles/zsh/ 下所有 .zsh 模块化配置

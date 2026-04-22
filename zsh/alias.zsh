@@ -55,7 +55,7 @@ alias free='free -m'
 alias psg='ps aux | grep -v grep | grep -i'
 alias myip='curl -s ifconfig.me'
 alias ports='netstat -tulanp'
-alias du='du -h'
+alias du='du -h --max-depth=1 | sort -rh'
 
 # --- 其他效率 ---
 alias cls='clear'

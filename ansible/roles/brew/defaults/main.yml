@@ -13,7 +13,7 @@ brew_packages:
   - trash-cli    # 命令行回收站，防止 rm -rf 误删
   - zoxide       # [推荐补充] 极其聪明的 cd 替代品，支持自动跳转
   - navi         # 自定义命令手册
-  - atuin        # 历史命令记录优化
+  - atuin        # 历史命令记录优化，登录账号后能自动备份、同步
   - x-cmd        # 包管理工具，可试用
 
   # --- 文本处理与配置调试 ---
@@ -46,7 +46,8 @@ brew_packages:
   - tcping       # 基于 TCP 的 ping 工具
   - asn          # 路由、IP 归属地与网络指纹查询
   - nethogs      # [推荐补充] 按进程查看实时网速流量
-
+  # dnsutils
+  
   # --- 实用辅助工具 ---
   - tldr         # 简化版的命令使用手册 (替代 man)
   - make         # 经典的任务脚本管理工具
